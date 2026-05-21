@@ -1,6 +1,7 @@
 package com.example.taskvmg2.ui.viewmodel
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -10,20 +11,17 @@ import com.example.taskvmg2.ui.model.Task
 class TaskViewModel : ViewModel() {
     private val repository = TaskRepository()
 
-    var tasks by mutableStateOf(listOf<Task>())
+    var tasks by mutableStateOf(repository.getTasks())
         private set
 
     var id by mutableStateOf("")
         private set
     var title by mutableStateOf("")
         private set
+    var priority by mutableStateOf("Media")
+        private set
     var completed by mutableStateOf(false)
         private set
-
-
-    init {
-        loadTask()
-    }
 
     fun onIdChange(newId: String) {
         this.id = newId
@@ -34,10 +32,14 @@ class TaskViewModel : ViewModel() {
     fun onCompletedChange(newCompleted: Boolean) {
         this.completed = newCompleted
     }
+    fun onProrityChange(newPriority: String) {
+        this.priority = newPriority
+    }
 
-    private fun loadTask() {
+    private fun refreshTask() {
         tasks = repository.getTasks()
     }
+
     fun loadTask(taskId: Int?) {
         if (taskId == null) {
             clearForm()
@@ -53,22 +55,20 @@ class TaskViewModel : ViewModel() {
     }
     fun addTask(task: Task) {
         repository.addTask(task)
-        loadTask()
+        refreshTask()
     }
     fun removeTask(task: Task) {
         repository.removeTask(task)
-        loadTask()
+        refreshTask()
     }
     fun toggleTask(task: Task) {
         repository.toggleTask(task)
-        loadTask()
+        refreshTask()
     }
-    fun getTaskId(id: Int): Task? {
-        return repository.getTaskId(id)
-    }
-    fun clearForm(){
+    private fun clearForm(){
         id=""
         title=""
         completed=false
+        priority = "Media"
     }
 }

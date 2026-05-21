@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.taskvmg2.ui.screen.SplashScreen
 import com.example.taskvmg2.ui.screen.TaskDetailScreen
 import com.example.taskvmg2.ui.screen.TaskListScreen
 
@@ -14,17 +15,19 @@ fun AppNavigation(modifier: Modifier)
 {
     val navController = rememberNavController()
 
-    NavHost(navController = navController
-        , startDestination = TaskList)
-    {
-        composable<TaskList>
-        {
+    NavHost(
+        navController = navController,
+        startDestination = Splash
+    ) {
+        composable<Splash> {
+            SplashScreen(navController = navController)
+        }
+        composable<TaskList> {
             TaskListScreen(navController = navController)
         }
-        composable<TaskDetail>{ backStackEntry ->
+        composable<TaskDetail> { backStackEntry ->
             val route = backStackEntry.toRoute<TaskDetail>()
-            TaskDetailScreen(navController = navController,
-                taskId = route.taskId)
+            TaskDetailScreen(navController = navController, taskId = route.taskId)
         }
 
     }

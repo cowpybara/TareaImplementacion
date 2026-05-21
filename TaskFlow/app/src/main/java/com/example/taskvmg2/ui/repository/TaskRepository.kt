@@ -1,43 +1,38 @@
 package com.example.taskvmg2.ui.repository
 
 import com.example.taskvmg2.ui.model.Task
-import com.example.taskvmg2.ui.model.TaskPriority
+import com.example.taskvmg2.ui.screen.TaskDetailScreen
 
 class TaskRepository {
-    private val tasks = mutableListOf<Task>(
-        Task(1, "Estudiar POO", "Hacer el proyecto de poo", TaskPriority.ALTA, false),
-        Task(2, "Avanzar proyecto de baswe de datos", "Ver contenedores docker", TaskPriority.MEDIA, true)
+    private val tasks = mutableListOf(
+        Task(1, "Entregar proyecto de POO", priority = "Alta"),
+        Task(2, "Estudiar para el parcial", priority = "Alta", completed = true),
+        Task(3, "Leer artículo de Compose", priority = "Media"),
+        Task(4, "Hacer ejercicio", priority = "Baja"),
+        Task(5, "Llamar a mamá", priority = "Baja")
     )
 
-    fun getTasks(): List<Task> = tasks
+    fun getTasks(): List<Task> = tasks.toList()
 
-    fun getTaskId(id: Int): Task? = tasks.find { it.id == id }
-
-    fun saveTask(task: Task) {
-        val finalId = if (task.id <= 0) {
-            (tasks.maxOfOrNull { it.id } ?: 0) + 1
+    fun addTask(task: Task) {
+        val index = tasks.indexOfFirst { it.id == task.id }
+        if (index != -1) {
+            tasks[index] = task // Edita
         } else {
-            task.id
-        }
-
-        val existingIndex = tasks.indexOfFirst { it.id == finalId }
-        if (existingIndex != -1) {
-            // Edición: Reemplazamos la tarea existente en la misma posición
-            tasks[existingIndex] = task.copy(id = finalId)
-        } else {
-            // Creación: Insertamos la nueva tarea
-            tasks.add(task.copy(id = finalId))
+            tasks.add(task) // Crea
         }
     }
+
+    fun getTaskId(id: Int): Task? = tasks.find { it.id == id }
 
     fun removeTask(task: Task) {
         tasks.removeAll { it.id == task.id }
     }
 
     fun toggleTask(task: Task) {
-        val index = tasks.indexOfFirst { it.id == task.id }
+        val index = tasks.indexOf(task)
         if (index != -1) {
-            tasks[index] = tasks[index].copy(completed = !tasks[index].completed)
+            tasks[index] = task.copy(completed = !task.completed)
         }
     }
 }

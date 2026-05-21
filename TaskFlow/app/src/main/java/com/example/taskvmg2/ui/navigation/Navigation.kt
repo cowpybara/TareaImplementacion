@@ -8,3 +8,6 @@ object TaskList
 data class TaskDetail(
     val taskId : Int
 )
+
+@Serializable
+object Splash

@@ -1,0 +1,11 @@
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\navigation\AppNavigation.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\viewmodel\TaskViewModel.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\screen\TaskListScreen.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\model\Task.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\theme\Theme.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\screen\TaskDetailScreen.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\MainActivity.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\repository\TaskRepository.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\theme\Color.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\theme\Type.kt
+C:\Users\cowpy\AndroidStudioProjects\TaskVMG2\app\src\main\java\com\example\taskvmg2\ui\navigation\Navigation.kt

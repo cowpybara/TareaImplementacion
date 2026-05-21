@@ -1,0 +1,37 @@
+package com.example.taskvmg2.ui.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.taskvmg2.ui.screen.SplashScreen
+import com.example.taskvmg2.ui.screen.TaskDetailScreen
+import com.example.taskvmg2.ui.screen.TaskListScreen
+import com.example.taskvmg2.ui.viewmodel.TaskViewModel
+
+@Composable
+fun AppNavigation(modifier: Modifier)
+{
+    val navController = rememberNavController()
+    val sharedViewModel: TaskViewModel = viewModel()
+
+    NavHost(
+        navController = navController,
+        startDestination = Splash
+    ) {
+        composable<Splash> {
+            SplashScreen(navController = navController)
+        }
+        composable<TaskList> {
+            TaskListScreen(navController = navController, viewModel = sharedViewModel)
+        }
+        composable<TaskDetail> { backStackEntry ->
+            val route = backStackEntry.toRoute<TaskDetail>()
+            TaskDetailScreen(navController = navController, taskId = route.taskId, viewModel = sharedViewModel)
+        }
+    }
+}
